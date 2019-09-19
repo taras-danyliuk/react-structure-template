@@ -1,0 +1,5 @@
+serviceWorker.js
+config/
+scripts/
+build/
+jest.config.js

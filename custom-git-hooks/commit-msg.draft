@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Validates whether commit message is of a certain format.
+# Aborts commit if message is unsatisfactory
+
+commit_standard_regex='\[[A-z]+\-\d+\]|\[NO TASK\]\s?.+'
+error_message="\033[0;31mAborting commit. \033[0mPlease ensure your commit message meets the
+               standard requirement. '\033[0;32m[Jira Prefix-Task Number]Commit message'\033[0m or '\033[0;32m[NO TASK]Commit message'
+              \033[0mUse '\033[0;32m[TAX-1] Add xxx functionality'\033[0m for reference"
+
+
+if ! grep -iqE "$commit_standard_regex" "$1"; then
+    echo -e "$error_message" >&2
+    exit 1
+fi
