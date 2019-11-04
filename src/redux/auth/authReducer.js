@@ -1,7 +1,7 @@
 import * as types from "./authActionsTypes";
 
 
-const initialState = {
+export const initialState = {
   userId: "",
   fullName: "",
   isAuthenticated: false,

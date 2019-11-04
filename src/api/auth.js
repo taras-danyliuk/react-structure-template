@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { API_URL } from "./constants";
 
-export const auth = {
+const auth = {
   async login(data) {
     try {
       const result = await axios.post(`${API_URL}/login`, data);
@@ -38,3 +38,5 @@ export const auth = {
     }
   },
 };
+
+export default auth;

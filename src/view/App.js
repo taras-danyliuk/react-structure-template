@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 
-import Header from "./shared/header";
-
+import Header from "./shared/Header";
 import Modal from "./Modal/Modal";
-import Home from "./Home/Home";
-import Login from "./Login/Login";
 
-import PrivateRoute from "./router/privateRoute"
-import PublicRoute from "./router/publicRoute"
+import PrivateRoute from "./router/PrivateRoute"
+import PublicRoute from "./router/PublicRoute"
+import AuthRoutes from "./router/AuthRoutes";
+import UserRoutes from "./router/UserRoutes";
 
 
 class App extends Component {
@@ -19,8 +18,8 @@ class App extends Component {
 
         <Router>
           <Switch>
-            <PublicRoute path="/login" component={Login}/>
-            <PrivateRoute path="/" component={Home} />
+            <PublicRoute path="/auth" component={AuthRoutes}/>
+            <PrivateRoute path="/" component={UserRoutes} />
           </Switch>
         </Router>
 
