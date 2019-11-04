@@ -10,7 +10,6 @@ export default function UserRoutes() {
   return (
     <UserLayout>
       <Switch>
-        <Route path="/home" component={Home} />
         <Route path="/" component={Home} />
       </Switch>
     </UserLayout>
