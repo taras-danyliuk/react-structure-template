@@ -33,7 +33,7 @@ export const Login = ({ isProcessing, error, login }) => {
         <button type="submit" disabled={isProcessing}>Submit</button>
       </form>
 
-      <p className="auth-form-erro">{error}</p>
+      <p className="auth-form-error">{error}</p>
     </div>
   )
 };
