@@ -14,9 +14,9 @@ function AppRoutes() {
       <Route path="/" exact render={() => <div>Home</div>}/>
 
       <PublicRoute path="/auth" component={AuthRoutes}/>
-      <PrivateRoute path="/" component={UserRoutes} />
+      <PrivateRoute path="/profile" component={UserRoutes} />
 
-      <Route path="/not-found" render={() => <div>404 Not Found</div>}/>
+      <Route path="*" render={() => <div>404 Not Found</div>}/>
     </Switch>
   )
 }

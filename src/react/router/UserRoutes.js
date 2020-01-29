@@ -3,14 +3,14 @@ import { Route, Switch } from "react-router-dom";
 
 import UserLayout from "../layout/UserLayout";
 
-import Home from "../Home/Home";
+import UserHome from "../UserHome/UserHome";
 
 
 export default function UserRoutes() {
   return (
     <UserLayout>
       <Switch>
-        <Route path="/" component={Home} />
+        <Route path="/" component={UserHome} />
       </Switch>
     </UserLayout>
   )

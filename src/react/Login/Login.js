@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import { loginRequest } from "../../redux/auth/authActions";
 
 
-const Login = ({ isProcessing, error, login }) => {
+export const Login = ({ isProcessing, error, login }) => {
   const { register, handleSubmit, errors } = useForm({ defaultValues: { email: "", password: "" } });
 
 

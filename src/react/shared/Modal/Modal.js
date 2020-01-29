@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 
-import { closeModal } from "../../redux/modal/modalActions";
+import { closeModal } from "../../../redux/modal/modalActions";
 
 
 class Modal extends React.Component {
