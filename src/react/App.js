@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Switch } from "react-router-dom";
 import Header from "./shared/Header";
 import Modal from "./Modal/Modal";
 
-import PrivateRoute from "./router/PrivateRoute"
-import PublicRoute from "./router/PublicRoute"
+import PrivateRoute from "./router/components/PrivateRoute"
+import PublicRoute from "./router/components/PublicRoute"
 import AuthRoutes from "./router/AuthRoutes";
 import UserRoutes from "./router/UserRoutes";
 
