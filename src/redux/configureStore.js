@@ -1,19 +1,17 @@
+/* istanbul ignore file */
+
 import { applyMiddleware, compose, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-// import thunkMiddleware from "redux-thunk";
 import createSagaMiddleware from "redux-saga";
 
 import rootReducer from "./rootReducer";
 import rootSaga from "./rootSaga"
 
 
-const sagaMiddleware = createSagaMiddleware();
-
-
 export default function configureStore(preloadedState) {
+  const sagaMiddleware = createSagaMiddleware();
 
   // Combine all middlewares into single enhancer
-  // const middlewares = [thunkMiddleware];
   const middlewares = [sagaMiddleware];
   const middlewareEnhancer = applyMiddleware(...middlewares);
 

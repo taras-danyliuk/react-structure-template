@@ -4,42 +4,42 @@ import auth from "../../api/auth";
 import * as types from "./authActionsTypes";
 
 
-function *login ({ data }) {
-  yield put({ type: types.SHOW_LOADING });
+function *login ({ payload }) {
+  yield put({ type: types.TOGGLE_PROCESSING, payload: true });
 
   try {
-    const response = yield call(auth.login, data);
-    yield put({ type: types.LOGIN_REQUEST_SUCCESS, response });
+    const response = yield call(auth.login, payload);
+    yield put({ type: types.LOGIN_REQUEST_SUCCESS, payload: response });
   } catch (error) {
-    yield put({ type: types.LOGIN_REQUEST_ERROR, error: error.message });
+    yield put({ type: types.AUTH_REQUEST_ERROR, error });
   } finally {
-    yield put({ type: types.HIDE_LOADING })
+    yield put({ type: types.TOGGLE_PROCESSING, payload: false });
   }
 }
 
-function *register ({ data }) {
-  yield put({ type: types.SHOW_LOADING });
+function *register ({ payload }) {
+  yield put({ type: types.TOGGLE_PROCESSING, payload: true });
 
   try {
-    const response = yield call(auth.register, data);
-    yield put({ type: types.REGISTER_REQUEST_SUCCESS, response });
+    const response = yield call(auth.register, payload);
+    yield put({ type: types.REGISTER_REQUEST_SUCCESS, payload: response });
   } catch (error) {
-    yield put({ type: types.REGISTER_REQUEST_ERROR, error: error.message });
+    yield put({ type: types.AUTH_REQUEST_ERROR, error });
   } finally {
-    yield put({ type: types.HIDE_LOADING })
+    yield put({ type: types.TOGGLE_PROCESSING, payload: false });
   }
 }
 
 function *logout () {
-  yield put({ type: types.SHOW_LOADING });
+  yield put({ type: types.TOGGLE_PROCESSING, payload: true });
 
   try {
     const response = yield call(auth.logout);
-    yield put({ type: types.LOGOUT_REQUEST_SUCCESS, response });
+    yield put({ type: types.LOGOUT_REQUEST_SUCCESS, payload: response });
   } catch (error) {
-    yield put({ type: types.LOGOUT_REQUEST_ERROR, error: error.message });
+    yield put({ type: types.AUTH_REQUEST_ERROR, error });
   } finally {
-    yield put({ type: types.HIDE_LOADING })
+    yield put({ type: types.TOGGLE_PROCESSING, payload: false });
   }
 }
 

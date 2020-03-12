@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
 
-import { loginRequest } from "../../redux/auth/authActions";
+import { loginRequest, clearErrorAction } from "../../redux/auth/authActions";
 
 
-export const Login = ({ isProcessing, error, login }) => {
-  const { register, handleSubmit, errors } = useForm({ defaultValues: { email: "", password: "" } });
+export const Login = ({ isProcessing, error, login, clearError }) => {
+  const { register, handleSubmit, errors } = useForm();
+
+  // Clear error on unmount
+  useEffect(() => clearError, []);
 
 
   return (
@@ -33,18 +35,19 @@ export const Login = ({ isProcessing, error, login }) => {
         <button type="submit" disabled={isProcessing}>Submit</button>
       </form>
 
-      <p className="auth-form-error">{error}</p>
+      <p className="auth-form-error">{error && error.error}</p>
     </div>
   )
 };
 
 Login.propTypes = {
   isProcessing: PropTypes.bool.isRequired,
+  error: PropTypes.object,
   login: PropTypes.func.isRequired,
-  error: PropTypes.string,
+  clearError: PropTypes.func.isRequired,
 };
 
 export default connect(
   state => ({ isProcessing: state.auth.processing, error: state.auth.error }),
-  dispatch => ({ login: bindActionCreators(loginRequest, dispatch) })
+  { login: loginRequest, clearError: clearErrorAction }
 )(Login);

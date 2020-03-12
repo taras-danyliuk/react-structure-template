@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 
-function PublicRoute({ component: Component, isAuthenticated, location, ...rest }) {
+function PublicRoute({ component: Component, isAuthenticated, ...rest }) {
   return (
     <Route
       {...rest}
