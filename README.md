@@ -38,8 +38,5 @@ Run `npx browserslist` in project directory to see what browsers was selected by
 #### `.eslintignore`
 List of files and folders that will be ignored by ESLint.
 
-#### `.eslintrc.js`
-Configuration for ESLint. [See configuration](https://eslint.org/docs/user-guide/configuring)
-
 #### `.jest.config.js`
 Configuration for Jest. [See configuration](https://jestjs.io/docs/en/configuration)
