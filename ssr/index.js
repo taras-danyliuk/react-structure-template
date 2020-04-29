@@ -1,41 +1,20 @@
-import express from "express";
-import cacheControl from "express-cache-controller";
-import cookiesMiddleware from "universal-cookie-express";
-import compression from "compression";
+const fs = require("fs");
 
-import serverRenderer from "./middleware/renderer";
+require("ignore-styles");
 
+const processCWD = process.cwd();
+let envFile = ".env";
+if (fs.existsSync(`${processCWD}/.env.local`)) envFile = ".env.local";
+if (fs.existsSync(`${processCWD}/.env.staging`)) envFile = ".env.staging";
+if (fs.existsSync(`${processCWD}/.env.production`)) envFile = ".env.production";
 
-const PORT = process.env.PORT || 3000;
-const path = require("path");
+require("dotenv").config({ path: envFile });
 
-// initialize the application and create the routes
-const app = express();
-const router = express.Router();
-
-// Disable cache
-app.use(cacheControl());
-app.use(cookiesMiddleware());
-
-// Gzip
-app.use(compression());
-
-
-// other static resources should just be served as they are
-router.use(express.static(
-  path.resolve(__dirname, "..", "build"),
-  { maxAge: "30d", index: false },
-));
-
-// Process all requests with SSR
-router.use("*", serverRenderer);
-
-
-// tell the app to use the above rules
-app.use(router);
-
-// start the app
-app.listen(PORT, error => {
-  console.log(`listening on: ${PORT}`);
-  if (error) console.log("something bad happened", error);
+require("@babel/register")({
+  ignore: [/\/(build|node_modules)\//],
+  presets: ["react-app"],
 });
+
+console.error = () => {};
+
+require("./app");
