@@ -27,7 +27,7 @@ export default (req, res) => {
   };
 
   // Read and modify index.html file
-  const filePath = path.resolve(__dirname, "..", "..", "build", "index.html");
+  const filePath = path.resolve(__dirname, "..", "build", "index.html");
   fs.readFile(filePath, "utf8", async (err, htmlData) => {
     if (err) return res.status(404).end();
 
