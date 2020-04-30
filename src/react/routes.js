@@ -7,10 +7,10 @@ import PublicRoute from "./shared/routes/PublicRoute";
 // Layouts
 import AuthLayout from "./shared/layouts/AuthLayout";
 
-const NotFound = React.lazy(() => import("./shared/NotFound"));
-const Home = React.lazy(() => import("./Home/Home"));
-const Login = React.lazy(() => import("./Login/Login"));
-const Profile = React.lazy(() => import("./Profile/Profile"));
+import NotFound from "./shared/NotFound";
+import Home from "./Home/Home";
+import Login from "./Login/Login";
+import Profile from "./Profile/Profile";
 
 
 const routes = [

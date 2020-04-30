@@ -9,10 +9,16 @@ import * as serviceWorker from "./serviceWorker";
 import configureStore from "./redux/configureStore";
 
 
-const store = configureStore();
+// Prepare Redux store
+const preloadedState = window.__PRELOADED_STATE__;
+const store = configureStore(preloadedState);
+const hasSSR = !!preloadedState;
+delete window.__PRELOADED_STATE__;
 
 
-ReactDOM.render(
+// Render App
+const renderFunc = hasSSR ? ReactDOM.hydrate : ReactDOM.render;
+renderFunc(
   <Provider store={store}>
     <Router>
       <App/>
