@@ -23,7 +23,7 @@ function App() {
 
                 return (
                   <LayoutComponent>
-                    <route.component {...props}/>
+                    <el.component {...props}/>
                   </LayoutComponent>
                 )
               }}
