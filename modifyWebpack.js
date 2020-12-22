@@ -18,15 +18,14 @@ try {
     }
 
     // Comment linter lines
+    // Start of Linter Block
+    if (line.includes("new ESLintPlugin")) isInLinterBlock = true;
     if (isInLinterBlock) fs.appendFileSync(fileName, "//");
 
     fs.appendFileSync(fileName, `${line}\n`);
-
-    // Start of Linter Block
-    if (line.includes("First, run the linter.")) isInLinterBlock = true;
-
+    
     // End of Linter Block;
-    if (line === "        }," && isInLinterBlock) isInLinterBlock = false;
+    if (line === "      })," && isInLinterBlock) isInLinterBlock = false;
 
     if (line === "    plugins: [") {
       fs.appendFileSync(fileName, "      new CopyPlugin({ patterns: [{ from: 'src/assets/images', to: 'images' }] }),\n");

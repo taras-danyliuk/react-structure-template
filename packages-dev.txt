@@ -1,1 +1,1 @@
-copy-webpack-plugin redux-devtools-extension redux-saga-test-plan @coax/eslint-config-fe-react faker pre-commit
+copy-webpack-plugin@6.4.1 redux-devtools-extension redux-saga-test-plan @coax/eslint-config-fe-react faker pre-commit
