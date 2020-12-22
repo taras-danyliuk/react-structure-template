@@ -13,11 +13,11 @@ fs.readFile("package.json", "utf8", function(err, data) {
   delete parsedJson.jest;
   parsedJson.eslintConfig = { extends: "@coax/eslint-config-fe-react" };
 
-  parsedJson.scripts["test"] = "jest";
-  parsedJson.scripts["test:dev"] = "jest --watch --watchAll.";
-  parsedJson.scripts["test:ci"] = "jest --coverage";
+  parsedJson.scripts["test"] = "node scripts/test.js --watchAll=false";
+  parsedJson.scripts["test:dev"] = "node scripts/test.js";
+  parsedJson.scripts["test:ci"] = "node scripts/test.js --coverage --watchAll=false";
 
-  parsedJson.scripts.coverage = "jest --coverage";
+  parsedJson.scripts.coverage = "node scripts/test.js --coverage --watchAll=false";
 
   parsedJson.scripts["lint"] = "eslint --quiet ./";
   parsedJson.scripts["lint:ci"] = "eslint -f json -o eslint-report.json ./";
