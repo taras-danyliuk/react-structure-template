@@ -1,3 +1,4 @@
+import React from "react";
 import { render } from "../helpers/testUtils";
 import App from "./App";
 

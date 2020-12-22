@@ -23,7 +23,7 @@ try {
     if (isInLinterBlock) fs.appendFileSync(fileName, "//");
 
     fs.appendFileSync(fileName, `${line}\n`);
-    
+
     // End of Linter Block;
     if (line === "      })," && isInLinterBlock) isInLinterBlock = false;
 

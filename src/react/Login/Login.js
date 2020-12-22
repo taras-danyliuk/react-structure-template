@@ -1,23 +1,33 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { useForm } from "react-hook-form";
-import PropTypes from "prop-types";
 
 import { loginRequest, clearErrorAction } from "../../redux/auth/authActions";
 
 
-export const Login = ({ isProcessing, error, login, clearError }) => {
+export const Login = () => {
+  const { error, isProcessing } = useSelector(state => ({
+    error: state.auth.error, isProcessing: state.auth.processing
+  }), shallowEqual);
+  const dispatch = useDispatch();
   const { register, handleSubmit, errors } = useForm();
 
   // Clear error on unmount
-  useEffect(() => clearError, []);
+  useEffect(() => dispatch(clearErrorAction()), []);
 
 
+  // Methods
+  const onSubmit = values => {
+    dispatch(loginRequest(values))
+  }
+
+
+  // Render
   return (
     <div>
       <h1>Login</h1>
 
-      <form onSubmit={handleSubmit(login)} className="auth-form">
+      <form onSubmit={handleSubmit(onSubmit)} className="auth-form">
         <input
           name="email"
           ref={register({ required: "Field is required", pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i })}
@@ -40,14 +50,4 @@ export const Login = ({ isProcessing, error, login, clearError }) => {
   )
 };
 
-Login.propTypes = {
-  isProcessing: PropTypes.bool.isRequired,
-  error: PropTypes.object,
-  login: PropTypes.func.isRequired,
-  clearError: PropTypes.func.isRequired,
-};
-
-export default connect(
-  state => ({ isProcessing: state.auth.processing, error: state.auth.error }),
-  { login: loginRequest, clearError: clearErrorAction }
-)(Login);
+export default Login;
