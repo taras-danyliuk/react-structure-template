@@ -1,11 +1,7 @@
-import React from "react";
-import { shallow } from "enzyme";
-
+import { render } from "../helpers/testUtils";
 import App from "./App";
 
 
-it("renders without crashing", () => {
-  const component = shallow(<App/>);
-
-  expect(component.length).toBe(1);
+it("renders without crash", () => {
+  render(<App/>);
 });

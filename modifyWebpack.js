@@ -29,7 +29,7 @@ try {
     if (line === "        }," && isInLinterBlock) isInLinterBlock = false;
 
     if (line === "    plugins: [") {
-      fs.appendFileSync(fileName, "      new CopyPlugin([{ from: 'src/assets/images', to: 'images' }]),\n");
+      fs.appendFileSync(fileName, "      new CopyPlugin({ patterns: [{ from: 'src/assets/images', to: 'images' }] }),\n");
     }
   });
 

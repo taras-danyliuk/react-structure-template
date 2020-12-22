@@ -23,6 +23,7 @@ fs.readFile("package.json", "utf8", function(err, data) {
   parsedJson.scripts["lint:ci"] = "eslint -f json -o eslint-report.json ./";
   parsedJson.scripts["lint:fix"] = "eslint --fix ./";
 
+  parsedJson["pre-commit"] = ["lint", "test"];
 
   fs.unlinkSync("package.json");
   fs.writeFileSync("package.json", JSON.stringify(parsedJson, null, 2));
